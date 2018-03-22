@@ -1,0 +1,69 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: ingress-nginx       
+  name: default-backend-errors
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: default-backend-errors
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app_group: default-backend-errors
+        app_project: rdstation
+        app: default-backend-errors        
+        service: default-backend-errors
+    spec:
+      containers:
+      - name: default-backend-errors
+        image: robertvilvert/nginx-error-server:1.0
+        resources:
+          limits:
+            cpu: "0.3"
+            memory: "512Mi"
+          requests:
+            cpu: "0.3"
+            memory: "512Mi"
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          timeoutSeconds: 10
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: regsecret
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: default-backend-errors
+    app_group: errors
+    service: default-backend-errors
+  name: default-backend-errors
+  namespace: ingress-nginx
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    service: default-backend-errors
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
+

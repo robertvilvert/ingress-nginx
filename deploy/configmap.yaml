@@ -1,0 +1,12 @@
+kind: ConfigMap
+apiVersion: v1
+data:
+  custom-http-errors: 502,503,504       
+  enable-vts-status: "true"
+  log-format-escape-json: "true"
+  vts-default-filter-key: "$server_name"
+metadata:
+  name: nginx-configuration
+  namespace: ingress-nginx
+  labels:
+    app: ingress-nginx
