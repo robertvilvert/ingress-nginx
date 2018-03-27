@@ -12,6 +12,9 @@ spec:
     metadata:
       labels:
         app: ingress-nginx
+        k8s-addon: ingress-nginx.addons.k8s.io
+        k8s-app": nginx-ingress
+
     spec:
       serviceAccountName: nginx-ingress-serviceaccount
       containers:
