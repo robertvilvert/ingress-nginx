@@ -20,7 +20,7 @@ spec:
       serviceAccountName: nginx-ingress-serviceaccount
       containers:
         - name: nginx-ingress-controller
-          image: quay.io/aledbf/nginx-ingress-controller:0.344
+          image: quay.io/aledbf/nginx-ingress-controller:0.347
           args:
             - /nginx-ingress-controller
             - --default-backend-service=$(POD_NAMESPACE)/default-backend-errors
