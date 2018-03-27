@@ -8,8 +8,10 @@
 kubectl apply -f ./deploy/namespace.yaml
 kubectl apply -f ./deploy/custom-backend.yaml
 kubectl apply -f ./deploy/configmap.yaml
-kubectl apply -f ./tcp-services-configmap.yaml
+kubectl apply -f ./deploy/tcp-services-configmap.yaml
 kubectl apply -f ./deploy/udp-services-configmap.yaml
+kubectl apply -f ./deploy/rbac.yaml
+kubectl apply -f ./deploy/with-rbac.yaml
 ```
 
 #### GKE
