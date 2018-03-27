@@ -21,3 +21,10 @@ kubectl patch deployment -n ingress-nginx nginx-ingress-controller --type='json'
 kubectl apply -f ./deploy/service.yaml  
 kubectl apply -f ./deploy/patch-service-with-rbac.yaml
 ```
+
+#### Monitoring
+Require prometheus installed [project here](https://github.com/camilb/prometheus-kubernetes)
+
+```
+kubectl apply -f ./deploy/monitoring.yaml
+```
