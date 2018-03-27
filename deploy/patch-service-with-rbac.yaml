@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
       app: ingress-nginx
+      k8s-app: nginx-ingress
   template:
     metadata:
       labels:
