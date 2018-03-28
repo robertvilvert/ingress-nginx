@@ -13,6 +13,10 @@ spec:
       labels:
         app: ingress-nginx
         k8s-addon: ingress-nginx.addons.k8s.io
+      annotations:
+        prometheus.io/port: '10254'
+        prometheus.io/scrape: 'true'
+  
     spec:
       serviceAccountName: nginx-ingress-serviceaccount
       containers:
