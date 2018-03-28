@@ -16,4 +16,5 @@ metadata:
   name: nginx-configuration
   namespace: ingress-nginx
   labels:
+    k8s-addon: ingress-nginx.addons.k8s.io      
     app: ingress-nginx
